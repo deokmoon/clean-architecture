@@ -79,14 +79,78 @@
 
 --- 
 ### 단일 책임의 원칙
+![img.png](chapter2_srp.png)
 
 ### 부수효과에 관한 이야기
 
 ### 의존성 역전 원칙
+![img.png](chapter2_dip.png)
 
+![img_1.png](chapter2_dip2.png)
 ### 클린아키텍처
-
+![img.png](chapter2_clean-architecture.png)
 ### 육각형 아키텍처(헥사고날 아키텍처)
+![img.png](chapter2_hexagonal.png)
+
+- 그림참조: https://m.blog.naver.com/fbfbf1/222762182213
+
+## 3장 코드구성하기
+
+~~~bazaar
+bukpal
+├── domain
+│   ├── Account
+│   ├── Activity
+│   ├── AccountRepository
+│   └── AccountService
+├── persistence
+│   ├── AccountRepositoryImpl
+└── web
+    └── AccountController
+~~~
+
+
+~~~bazaar
+bukpal
+└── account
+     ├── Account
+     ├── AccountController
+     ├── AccountRepository
+     ├── AccountRepositoryImpl
+     └── AccountService
+
+~~~
+
+~~~bazaar
+buckpal
+└── account
+    ├── adapter
+    |   ├── in
+    |   |  └── web
+    |   |      └── AccountController
+    |   |        
+    |   |       
+    |   └── out
+    |      └── persistence
+    |          ├── AccountPersistenceAdapter
+    |          └── SpringDataAccountRepository
+    ├── domain
+    |   ├── Account
+    |   └── Activity
+    |
+    └── application
+        ├── SendMoneyService
+        └── port
+            ├── in
+            |   └── SendMoneyUseCase
+            └── out
+                ├── LoadAccountPort
+                └──updateAccountStatePort
+
+~~~
+
+![img.png](chapter3_dip.png)
+
 
 ---
 ### 아래부터 wikibook이 제공하는 기본 Readme 이다.
